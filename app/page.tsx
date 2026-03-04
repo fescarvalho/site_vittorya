@@ -6,7 +6,10 @@ import {
   Heart,
   Users,
   MessageCircle,
+  CalendarCheck,
+  Sparkles,
   Phone,
+  Star,
   Mail,
   Instagram,
   Linkedin,
@@ -30,6 +33,14 @@ interface Especialidade {
   tag: string;
 }
 
+interface Passo {
+  id: number;
+  numero: string;
+  titulo: string;
+  descricao: string;
+  icone: React.ReactNode;
+}
+
 
 
 interface NavLink {
@@ -45,6 +56,7 @@ const NAV_LINKS: NavLink[] = [
   { label: "Início", href: "#hero" },
   { label: "Sobre", href: "#sobre" },
   { label: "Especialidades", href: "#especialidades" },
+  { label: "Como Funciona", href: "#como-funciona" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -72,6 +84,33 @@ const ESPECIALIDADES: Especialidade[] = [
     description:
       "Suporte para compreender padrões relacionais, melhorar a comunicação e construir vínculos mais saudáveis e significativos.",
     tag: "Casal e Família",
+  },
+];
+
+const PASSOS: Passo[] = [
+  {
+    id: 1,
+    numero: "01",
+    titulo: "Agendamento",
+    descricao:
+      "Entre em contato por WhatsApp ou e-mail para agendar sua consulta. O processo é rápido, simples e totalmente confidencial.",
+    icone: <CalendarCheck size={24} strokeWidth={1.5} />,
+  },
+  {
+    id: 2,
+    numero: "02",
+    titulo: "Primeira Conversa",
+    descricao:
+      "Na sessão inicial, você se apresenta no seu próprio ritmo. Não há julgamentos — apenas escuta genuína e acolhimento.",
+    icone: <MessageCircle size={24} strokeWidth={1.5} />,
+  },
+  {
+    id: 3,
+    numero: "03",
+    titulo: "Início da Jornada",
+    descricao:
+      "Juntos, traçamos um plano terapêutico individualizado, focado nos seus objetivos e no seu bem-estar duradouro.",
+    icone: <Sparkles size={24} strokeWidth={1.5} />,
   },
 ];
 
@@ -134,8 +173,8 @@ function Header() {
           href="#contato"
           className="hidden md:inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-sans font-medium px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2"
         >
-          <MessageCircle size={16} />
-          Fale Comigo
+          <CalendarCheck size={16} />
+          Agendar Consulta
         </a>
 
         {/* Mobile Menu Toggle */}
@@ -168,8 +207,8 @@ function Header() {
               onClick={() => setMenuOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 bg-green-500 text-white text-sm font-medium px-5 py-3 rounded-full"
             >
-              <MessageCircle size={16} />
-              Fale Comigo
+              <CalendarCheck size={16} />
+              Agendar Consulta
             </a>
           </nav>
         </div>
@@ -209,7 +248,7 @@ function HeroSection() {
           {/* Badge */}
           <div className="animate-fade-in-up inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 text-xs font-medium px-4 py-2 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse" />
-            Psicologia Clínica · Atendimento Humanizado
+            Psicologia Clínica · Atendimento Online e Presencial
           </div>
 
           <h1 className="animate-fade-in-up delay-100 font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight tracking-tight mb-6">
@@ -229,19 +268,22 @@ function HeroSection() {
             emocional que merece. Psicologia acolhedora e baseada em evidências.
           </p>
 
-          <div className="animate-fade-in-up delay-300 flex flex-wrap gap-4 mb-12">
+          <div className="animate-fade-in-up delay-300 flex flex-wrap items-center gap-4 mb-12">
             <a
               href="#contato"
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-sans font-semibold text-base px-7 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2"
             >
-              Entre em Contato
+              Agendar Consulta
               <ArrowRight size={18} />
             </a>
             <a
-              href="#sobre"
-              className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 hover:border-green-300 hover:text-green-700 font-sans font-medium text-base px-7 py-4 rounded-2xl transition-all duration-200 shadow-sm hover:shadow-md"
+              href="https://instagram.com/psi.vittoryabazeth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-500 hover:opacity-90 text-white font-sans font-medium text-base px-7 py-4 rounded-2xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
             >
-              Conhecer mais
+              <Instagram size={18} />
+              Ir para o Instagram
             </a>
           </div>
 
@@ -272,7 +314,7 @@ function HeroSection() {
                   Vittorya
                 </p>
                 <p className="font-sans text-sm text-gray-500">
-                  Psicóloga Clínica · CRP 00/00000
+                  Psicóloga Clínica · CRP 05/76271
                 </p>
               </div>
 
@@ -288,9 +330,9 @@ function HeroSection() {
                 <CheckCircle className="text-green-500" size={20} />
               </div>
               <div>
-                <p className="text-xs text-gray-400 font-sans">Abordagem</p>
+                <p className="text-xs text-gray-400 font-sans">Sessão</p>
                 <p className="text-sm font-semibold text-gray-800 font-sans">
-                  Humanizada ✓
+                  Agendada ✓
                 </p>
               </div>
             </div>
@@ -352,7 +394,7 @@ function SobreSection() {
 
           {/* CRP Badge */}
           <div className="absolute top-6 -right-4 bg-green-500 text-white rounded-2xl px-4 py-3 shadow-lg font-sans text-sm font-semibold">
-            CRP 00/00000
+            CRP 05/76271
           </div>
         </div>
 
@@ -470,8 +512,87 @@ function EspecialidadesSection() {
 }
 
 // ─────────────────────────────────────────────
-// Contato Section (follows Especialidades)
 // ─────────────────────────────────────────────
+// Como Funciona Section
+// ─────────────────────────────────────────────
+
+function ComoFuncionaSection() {
+  return (
+    <section
+      id="como-funciona"
+      className="py-28 bg-white"
+      aria-labelledby="como-funciona-heading"
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <span className="inline-block text-green-600 text-sm font-sans font-semibold tracking-widest uppercase mb-4">
+            Processo
+          </span>
+          <h2
+            id="como-funciona-heading"
+            className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-5"
+          >
+            Como funciona
+          </h2>
+          <p className="font-sans text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
+            Começar a terapia é mais simples do que parece. Tudo começa com
+            um primeiro passo.
+          </p>
+        </div>
+
+        {/* Steps */}
+        <div
+          className="grid md:grid-cols-3 gap-8 relative"
+          aria-label="Passos do processo de atendimento"
+        >
+          {/* Connector line (desktop) */}
+          <div
+            aria-hidden="true"
+            className="hidden md:block absolute top-8 left-[calc(16.67%)] right-[calc(16.67%)] h-px bg-gradient-to-r from-green-200 via-green-300 to-green-200"
+          />
+
+          {PASSOS.map((passo) => (
+            <div
+              key={passo.id}
+              className="relative flex flex-col items-center text-center p-8"
+            >
+              {/* Number circle */}
+              <div className="relative w-16 h-16 rounded-full bg-green-500 flex items-center justify-center mb-6 shadow-lg shadow-green-200 z-10">
+                <span className="font-serif font-bold text-xl text-white">
+                  {passo.numero}
+                </span>
+              </div>
+
+              {/* Icon chip */}
+              <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 mb-5">
+                {passo.icone}
+              </div>
+
+              <h3 className="font-serif text-2xl font-semibold text-gray-800 mb-3">
+                {passo.titulo}
+              </h3>
+              <p className="font-sans text-gray-500 text-base leading-relaxed">
+                {passo.descricao}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA below steps */}
+        <div className="text-center mt-12">
+          <a
+            href="#contato"
+            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-sans font-semibold text-base px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2"
+          >
+            Dar o primeiro passo
+            <ArrowRight size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 // ─────────────────────────────────────────────
 // Contato Section
@@ -538,7 +659,7 @@ function ContatoSection() {
                   </li>
                   <li>
                     <a
-                      href="https://wa.me/5500000000000"
+                      href="https://wa.me/5522999983316?text=Olá%20Vittorya%2C%20gostaria%20de%20agendar%20uma%20consulta!"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group flex items-center gap-4 text-white hover:text-green-100 transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-green-500 rounded-xl"
@@ -548,7 +669,7 @@ function ContatoSection() {
                         <Phone size={20} />
                       </div>
                       <span className="font-sans font-medium text-base">
-                        WhatsApp: (00) 00000-0000
+                        WhatsApp: (22) 99998-3316
                       </span>
                     </a>
                   </li>
@@ -558,7 +679,7 @@ function ContatoSection() {
                         <MapPin size={20} />
                       </div>
                       <span className="font-sans font-medium text-base">
-                        Clínica · Atendimento Presencial
+                        Atendimento Online e Presencial
                       </span>
                     </div>
                   </li>
@@ -567,14 +688,14 @@ function ContatoSection() {
 
               {/* WhatsApp CTA Button */}
               <a
-                href="https://wa.me/5500000000000"
+                href="https://wa.me/5522999983316?text=Olá%20Vittorya%2C%20gostaria%20de%20agendar%20uma%20consulta!"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-10 inline-flex items-center justify-center gap-3 bg-white text-green-600 hover:bg-green-50 font-sans font-semibold text-base px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-green-500"
-                aria-label="Falar no WhatsApp (abre em nova aba)"
+                aria-label="Agendar consulta via WhatsApp (abre em nova aba)"
               >
                 <MessageCircle size={20} fill="currentColor" />
-                Falar no WhatsApp
+                Chamar no WhatsApp
                 <ArrowRight size={18} />
               </a>
             </div>
@@ -766,13 +887,13 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/5500000000000"
+                  href="https://wa.me/5522999983316?text=Olá%20Vittorya%2C%20gostaria%20de%20agendar%20uma%20consulta!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-sans text-sm text-gray-400 hover:text-green-400 transition-colors flex items-center gap-2"
                   aria-label="WhatsApp (abre em nova aba)"
                 >
-                  <Phone size={15} /> (00) 00000-0000
+                  <Phone size={15} /> (22) 99998-3316
                 </a>
               </li>
             </ul>
@@ -780,7 +901,7 @@ function Footer() {
             {/* Social links */}
             <div className="flex items-center gap-3 mt-6" aria-label="Redes sociais">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/psi.vittoryabazeth"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-gray-800 hover:bg-green-500 flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200"
@@ -807,7 +928,7 @@ function Footer() {
             © {currentYear} Vittorya Psicologia. Todos os direitos reservados.
           </p>
           <p className="font-sans text-xs text-gray-600">
-            CRP 00/00000 · CFP regulamentado
+            CRP 05/76271 · CFP regulamentado
           </p>
         </div>
       </div>
@@ -822,10 +943,10 @@ function Footer() {
 function WhatsAppFAB() {
   return (
     <a
-      href="https://wa.me/5500000000000"
+      href="https://wa.me/5522999983316?text=Olá%20Vittorya%2C%20gostaria%20de%20agendar%20uma%20consulta!"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Falar no WhatsApp (abre em nova aba)"
+      aria-label="Agendar consulta via WhatsApp (abre em nova aba)"
       className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-green-500 hover:bg-green-600 active:scale-95 rounded-full shadow-2xl hover:shadow-green-300/60 flex items-center justify-center text-white transition-all duration-200 group"
     >
       {/* Pulse ring */}
@@ -843,7 +964,7 @@ function WhatsAppFAB() {
         aria-hidden="true"
         className="absolute right-full mr-3 bg-gray-900 text-white text-xs font-sans font-medium px-3 py-2 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
       >
-        Falar no WhatsApp
+        Agendar Consulta
       </span>
     </a>
   );
@@ -861,6 +982,7 @@ export default function Page() {
         <HeroSection />
         <SobreSection />
         <EspecialidadesSection />
+        <ComoFuncionaSection />
         <ContatoSection />
       </main>
       <Footer />
