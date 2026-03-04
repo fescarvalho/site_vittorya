@@ -311,7 +311,7 @@ function HeroSection() {
               {/* Floating name badge */}
               <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
                 <p className="font-serif font-semibold text-gray-900 text-lg">
-                  Vittorya
+                  Vittorya Bazeth
                 </p>
                 <p className="font-sans text-sm text-gray-500">
                   Psicóloga Clínica · CRP 05/76271
@@ -323,7 +323,7 @@ function HeroSection() {
 
             {/* Floating stat card */}
             <div
-              className="absolute -top-5 -left-8 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 animate-float"
+              className="absolute -top-5 -left-8 bg-white rounded-2xl shadow-xl p-4 hidden md:flex items-center gap-3 animate-float"
               aria-hidden="true"
             >
               <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center">
@@ -338,7 +338,7 @@ function HeroSection() {
             </div>
 
             <div
-              className="absolute -bottom-4 -right-6 bg-white rounded-2xl shadow-xl p-4 animate-float delay-300"
+              className="absolute -bottom-4 -right-6 bg-white rounded-2xl shadow-xl p-4 hidden md:block animate-float delay-300"
               aria-hidden="true"
             >
               <p className="text-xs text-gray-400 font-sans mb-1">
@@ -408,17 +408,21 @@ function SobreSection() {
             className="font-serif text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6"
           >
             Olá, sou{" "}
-            <span className="text-green-600 italic">Vittorya</span>
+            <span className="text-green-600 italic">Vittorya Bazeth</span>
           </h2>
           <p className="font-sans text-gray-500 text-lg leading-relaxed mb-6">
-            Sou psicóloga clínica com abordagem humanizada e centrada na
-            pessoa. Acredito que cada indivíduo carrega em si a capacidade de
-            crescer — e meu papel é caminhar ao seu lado nesse processo.
+            Minha prática clínica é fundamentada na Terapia
+            Cognitivo-Comportamental (TCC), uma abordagem prática, estruturada
+            e focada no seu bem-estar. Trabalhando em equipe, vamos identificar
+            os pensamentos que causam sofrimento e compreender os padrões de
+            comportamento que limitam o seu dia a dia.
           </p>
           <p className="font-sans text-gray-500 text-lg leading-relaxed mb-10">
-            Especializada em saúde mental, ansiedade e relacionamentos,
-            integro técnicas baseadas em evidências para oferecer um
-            atendimento que respeita a sua história e o seu ritmo.
+            Meu objetivo é te ajudar a desenvolver estratégias saudáveis para
+            lidar com a ansiedade, o estresse, as inseguranças e os desafios
+            nos relacionamentos, além de fortalecer a sua autoestima. É um
+            processo focado em resultados reais, desenhado para promover a sua
+            autonomia e qualidade de vida.
           </p>
 
           {/* Highlights */}
