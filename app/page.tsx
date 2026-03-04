@@ -10,6 +10,7 @@ import {
   Sparkles,
   Phone,
   Star,
+  Quote,
   Mail,
   Instagram,
   Linkedin,
@@ -42,6 +43,12 @@ interface Passo {
 }
 
 
+interface Depoimento {
+  id: number;
+  texto: string;
+  autor: string;
+  iniciais: string;
+}
 
 interface NavLink {
   label: string;
@@ -57,6 +64,7 @@ const NAV_LINKS: NavLink[] = [
   { label: "Sobre", href: "#sobre" },
   { label: "Especialidades", href: "#especialidades" },
   { label: "Como Funciona", href: "#como-funciona" },
+  { label: "Depoimentos", href: "#depoimentos" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -114,7 +122,26 @@ const PASSOS: Passo[] = [
   },
 ];
 
-
+const DEPOIMENTOS: Depoimento[] = [
+  {
+    id: 1,
+    texto: "Eu comecei um tratamento psicológico com a Vittórya Bazeth e não imaginava que este tratamento fosse mudar minha vida. Eu estava passando por um momento muito difícil em minha vida e Deus me abençoou com uma pessoa muito especial, mais que uma psicóloga, uma profissional com um coração imenso. Com o passar do tratamento ela me ensinou a lidar com minhas emoções e ansiedade. Dr. Vittórya é uma profissional exemplar, com um carisma e dedicação pelo que faz. Agradeço a Deus e à Dr. Vittórya por todo carinho comigo. Deus te abençoe sempre 🙏😘",
+    autor: "Paciente Anônima",
+    iniciais: "PA"
+  },
+  {
+    id: 2,
+    texto: "Eu sempre tive receio de psicólogos, mas a empatia desde a primeira sessão me deixou à vontade. Hoje, me sinto muito mais seguro para enfrentar meus desafios.",
+    autor: "João P.",
+    iniciais: "JP"
+  },
+  {
+    id: 3,
+    texto: "Profissional maravilhosa! Muito humana, sabe exatamente as perguntas certas a fazer para ajudar no autoconhecimento. Recomendo de olhos fechados.",
+    autor: "Mariana S.",
+    iniciais: "MS"
+  }
+];
 
 // ─────────────────────────────────────────────
 // Header Component
@@ -144,9 +171,9 @@ function Header() {
           className="flex items-center gap-3 group"
           aria-label="Vittorya Psicologia - Ir para o início"
         >
-          <div className="relative w-48 h-48 shrink-0">
+          <div className="relative w-30 h-30 shrink-0">
             <Image
-              src="/logo-final.png"
+              src="/logo-header.png"
               alt="Vittorya Psicologia Logo"
               fill
               className="object-contain"
@@ -602,6 +629,59 @@ function ComoFuncionaSection() {
 }
 
 // ─────────────────────────────────────────────
+// Depoimentos Section
+// ─────────────────────────────────────────────
+
+function DepoimentosSection() {
+  return (
+    <section id="depoimentos" className="py-28 bg-[#FAFAFA]" aria-labelledby="depoimentos-heading">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <span className="inline-block text-green-600 text-sm font-sans font-semibold tracking-widest uppercase mb-4">
+            Depoimentos
+          </span>
+          <h2 id="depoimentos-heading" className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-5">
+            O que dizem os pacientes
+          </h2>
+          <p className="font-sans text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
+            Algumas histórias compartilhadas por quem já vivenciou o processo terapêutico e retomou o bem-estar.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {DEPOIMENTOS.map((dep) => (
+            <div key={dep.id} className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl border border-gray-100 hover:border-green-100 transition-all duration-300 relative flex flex-col justify-between">
+              <div>
+                <Quote className="text-green-100 w-12 h-12 absolute top-6 right-6 opacity-60" />
+                <div className="flex items-center gap-1 mb-6 text-yellow-500">
+                  <Star fill="currentColor" size={18} />
+                  <Star fill="currentColor" size={18} />
+                  <Star fill="currentColor" size={18} />
+                  <Star fill="currentColor" size={18} />
+                  <Star fill="currentColor" size={18} />
+                </div>
+                <p className="font-sans text-gray-600 text-base leading-relaxed mb-8 italic relative z-10">
+                  "{dep.texto}"
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-serif font-bold text-lg">
+                  {dep.iniciais}
+                </div>
+                <div>
+                  <p className="font-sans font-semibold text-gray-900">{dep.autor}</p>
+                  <p className="font-sans text-sm text-gray-500">Paciente</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
 // Contato Section
 // ─────────────────────────────────────────────
 
@@ -612,26 +692,49 @@ function ContatoSection() {
     mensagem: "",
   });
   const [enviado, setEnviado] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [erro, setErro] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simula envio
-    setEnviado(true);
-    setTimeout(() => setEnviado(false), 4000);
-    setFormData({ nome: "", email: "", mensagem: "" });
+    setIsSubmitting(true);
+    setErro(false);
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_FORMSPREE_URL!, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setEnviado(true);
+        setTimeout(() => setEnviado(false), 5000);
+        setFormData({ nome: "", email: "", mensagem: "" });
+      } else {
+        setErro(true);
+      }
+    } catch (error) {
+      setErro(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section
       id="contato"
-      className="py-28 bg-[#FAFAFA]"
+      className="py-28 bg-white"
       aria-labelledby="contato-heading"
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="grid md:grid-cols-2">
             {/* Left: Contact info */}
-            <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-12 flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-8 md:p-12 flex flex-col justify-between">
               <div>
                 <span className="inline-block text-green-100 text-sm font-sans font-semibold tracking-widest uppercase mb-4">
                   Contato
@@ -659,8 +762,8 @@ function ContatoSection() {
                       <div className="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                         <Mail size={20} />
                       </div>
-                      <span className="font-sans font-medium text-base">
-                        vittorya@psicologia.com.br
+                      <span className="font-sans font-medium text-base break-all md:break-normal">
+                        vittoryabazeth22@gmail.com
                       </span>
                     </a>
                   </li>
@@ -708,7 +811,7 @@ function ContatoSection() {
             </div>
 
             {/* Right: Form */}
-            <div className="p-12">
+            <div className="p-8 md:p-12">
               <h3 className="font-serif text-2xl font-semibold text-gray-800 mb-8">
                 Envie uma mensagem
               </h3>
@@ -720,6 +823,15 @@ function ContatoSection() {
                 >
                   <CheckCircle size={18} className="shrink-0" />
                   Mensagem enviada com sucesso! Retornarei em breve.
+                </div>
+              )}
+
+              {erro && (
+                <div
+                  role="alert"
+                  className="flex items-center gap-3 bg-red-50 border border-red-200 text-red-700 rounded-2xl px-5 py-4 mb-6 text-sm font-sans"
+                >
+                  Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato pelo WhatsApp.
                 </div>
               )}
 
@@ -748,8 +860,9 @@ function ContatoSection() {
                     onChange={(e) =>
                       setFormData((prev) => ({ ...prev, nome: e.target.value }))
                     }
-                    className="w-full font-sans text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
+                    className="w-full font-sans text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all disabled:opacity-50"
                     aria-required="true"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -775,8 +888,9 @@ function ContatoSection() {
                         email: e.target.value,
                       }))
                     }
-                    className="w-full font-sans text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
+                    className="w-full font-sans text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all disabled:opacity-50"
                     aria-required="true"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -801,17 +915,19 @@ function ContatoSection() {
                         mensagem: e.target.value,
                       }))
                     }
-                    className="w-full font-sans text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all resize-none"
+                    className="w-full font-sans text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all resize-none disabled:opacity-50"
                     aria-required="true"
+                    disabled={isSubmitting}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-sans font-semibold text-base px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2"
+                  disabled={isSubmitting}
+                  className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 disabled:bg-green-400 disabled:cursor-not-allowed text-white font-sans font-semibold text-base px-6 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2"
                 >
-                  Enviar Mensagem
-                  <ArrowRight size={18} />
+                  {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                  {!isSubmitting && <ArrowRight size={18} />}
                 </button>
 
                 <p className="font-sans text-xs text-gray-400 text-center">
@@ -838,15 +954,15 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
-          <div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <a
               href="#hero"
-              className="flex items-center gap-2 mb-6"
+              className="inline-block mb-6"
               aria-label="Vittorya Psicologia - Ir para o início"
             >
-              <div className="relative w-64 h-64">
+              <div className="relative w-40 h-40 md:w-48 md:h-48">
                 <Image
-                  src="/logo-final.png"
+                  src="/logo-footer.png"
                   alt="Vittorya Psicologia Logo"
                   fill
                   className="object-contain brightness-0 invert"
@@ -933,10 +1049,11 @@ function Footer() {
 
         {/* Divider + copyright */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-sans text-xs text-gray-500">
-            © {currentYear} Vittorya Psicologia. Todos os direitos reservados.
+          <p className="font-sans text-xs text-gray-500 text-center md:text-left">
+            © {currentYear} Vittorya Psicologia. Todos os direitos reservados.<br />
+            Desenvolvido por <a href="https://fescarvpage.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors">Fernando Carvalho</a>
           </p>
-          <p className="font-sans text-xs text-gray-600">
+          <p className="font-sans text-xs text-gray-600 text-center md:text-right">
             CRP 05/76271 · CFP regulamentado
           </p>
         </div>
@@ -992,6 +1109,7 @@ export default function Page() {
         <SobreSection />
         <EspecialidadesSection />
         <ComoFuncionaSection />
+        <DepoimentosSection />
         <ContatoSection />
       </main>
       <Footer />

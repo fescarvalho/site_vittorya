@@ -8,17 +8,29 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 
-  /* Sage/Mint Green Palette */
-  --color-sage-50: #f0faf4;
-  --color-sage-100: #d8f3e4;
-  --color-sage-200: #b3e6ca;
-  --color-sage-300: #82cfaa;
-  --color-sage-400: #52b589;
-  --color-sage-500: #2e9c6e;
-  --color-sage-600: #237d58;
-  --color-sage-700: #1c6346;
-  --color-sage-800: #174f38;
-  --color-sage-900: #12402e;
+  /* Custom Green Palette (#133E34) */
+  --color-green-50: #eaf1ef;
+  --color-green-100: #cbdfd9;
+  --color-green-200: #a1c6bb;
+  --color-green-300: #6ca797;
+  --color-green-400: #428976;
+  --color-green-500: #133e34;
+  --color-green-600: #0f322a;
+  --color-green-700: #0c2721;
+  --color-green-800: #081d18;
+  --color-green-900: #051310;
+
+  /* Custom Emerald overrides for uniformity */
+  --color-emerald-50: #eaf1ef;
+  --color-emerald-100: #cbdfd9;
+  --color-emerald-200: #a1c6bb;
+  --color-emerald-300: #6ca797;
+  --color-emerald-400: #428976;
+  --color-emerald-500: #133e34;
+  --color-emerald-600: #0f322a;
+  --color-emerald-700: #0c2721;
+  --color-emerald-800: #081d18;
+  --color-emerald-900: #051310;
 
   --color-background: #FAFAFA;
   --color-foreground: #111827;
@@ -42,6 +54,13 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Custom Utilities */
@@ -140,7 +159,7 @@ body {
 
 /* Focus visible ring */
 :focus-visible {
-  outline: 2px solid #2e9c6e;
+  outline: 2px solid #133e34;
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -155,10 +174,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #b3e6ca;
+  background: #a1c6bb;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2e9c6e;
+  background: #133e34;
 }
