@@ -137,19 +137,22 @@ function Header() {
         : "bg-transparent"
         }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 h-48 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#hero"
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-3 group"
           aria-label="Vittorya Psicologia - Ir para o início"
         >
-          <div className="w-9 h-9 rounded-full bg-green-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-            <Heart size={18} className="text-white" fill="white" />
+          <div className="relative w-48 h-48 shrink-0">
+            <Image
+              src="/logo-final.png"
+              alt="Vittorya Psicologia Logo"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
-          <span className="font-serif text-xl font-semibold text-gray-900 tracking-tight">
-            Vittorya
-          </span>
         </a>
 
         {/* Desktop Navigation */}
@@ -225,7 +228,7 @@ function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#FAFAFA] pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#FAFAFA] pt-48"
       aria-label="Seção principal"
     >
       {/* Background blobs */}
@@ -838,15 +841,17 @@ function Footer() {
           <div>
             <a
               href="#hero"
-              className="flex items-center gap-2 mb-5"
+              className="flex items-center gap-2 mb-6"
               aria-label="Vittorya Psicologia - Ir para o início"
             >
-              <div className="w-9 h-9 rounded-full bg-green-500 flex items-center justify-center">
-                <Heart size={18} className="text-white" fill="white" />
+              <div className="relative w-64 h-64">
+                <Image
+                  src="/logo-final.png"
+                  alt="Vittorya Psicologia Logo"
+                  fill
+                  className="object-contain brightness-0 invert"
+                />
               </div>
-              <span className="font-serif text-xl font-semibold text-white">
-                Vittorya
-              </span>
             </a>
             <p className="font-sans text-sm text-gray-400 leading-relaxed max-w-xs">
               Psicologia clínica humanizada para quem busca equilíbrio,
