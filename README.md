@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vittorya Bazeth - Psicologia Clínica
 
-## Getting Started
+Esta é a landing page profissional da psicóloga **Vittorya Bazeth**, focada em oferecer um espaço de acolhimento e equilíbrio através da Terapia Cognitivo-Comportamental (TCC).
 
-First, run the development server:
+O projeto foi desenvolvido para fornecer uma experiência fluida, moderna e acolhedora para pacientes que buscam atendimento psicológico online ou presencial.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tecnologias
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Este projeto utiliza as seguintes tecnologias:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 16** (App Router)
+- **React 19**
+- **Tailwind CSS 4**
+- **TypeScript**
+- **Lucide React** (Ícones)
+- **Formspree** (Integração de formulário de contato)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Funcionalidades
 
-## Learn More
+- **Design Responsivo**: Otimizado para dispositivos móveis, tablets e desktops.
+- **Seções Informativas**:
+  - **Especialidades**: Detalhamento das áreas de atuação (Ansiedade, Terapia Individual, Relacionamentos).
+  - **Processo**: Passo a passo de como funciona o agendamento e o início da terapia.
+  - **Sobre mim**: Informações profissionais e abordagem clínica.
+  - **Depoimentos**: Prova social de pacientes atendidos.
+- **Formulário de Contato**: Integrado para facilitar o pedido de agendamento por e-mail.
+- **Botões de CTA**: Acesso rápido ao WhatsApp e Instagram.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Instalação e Uso Local
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/usuario/vittorya-landing.git
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
 
-## Deploy on Vercel
+3.  **Configure as variáveis de ambiente:**
+    Crie um arquivo `.env.local` na raiz do projeto e adicione sua URL do Formspree:
+    ```env
+    NEXT_PUBLIC_FORMSPREE_URL=https://formspree.io/f/seu-id
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.  **Execute o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
+
+## 📄 Licença
+
+Este projeto é privado e de uso exclusivo para a profissional Vittorya Bazeth.
