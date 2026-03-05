@@ -131,16 +131,17 @@ const DEPOIMENTOS: Depoimento[] = [
   },
   {
     id: 2,
-    texto: "Eu sempre tive receio de psicólogos, mas a empatia desde a primeira sessão me deixou à vontade. Hoje, me sinto muito mais seguro para enfrentar meus desafios.",
-    autor: "João P.",
-    iniciais: "JP"
+    texto: "Vittorya me acolheu em um momento de extrema necessidade, com muito respeito e dedicação. Me fez conhecer coisas em mim que em toda minha vida nunca tinha sequer pensado. Estar em tratamento com ela, é saber que serei ouvida e aconselhada, que teremos risos e choros, comemoração e acolhimento. Hoje vejo o quão importante e esclarecedor foi começar esse tratamento com ela. Vittorya é uma profissional e uma pessoa maravilhosa, humana, carinhosa e extremamente dedicada ao seu paciente. Você é muito especial para mim.",
+    autor: "Paciente Anônima",
+    iniciais: "PA"
   },
   {
     id: 3,
     texto: "Profissional maravilhosa! Muito humana, sabe exatamente as perguntas certas a fazer para ajudar no autoconhecimento. Recomendo de olhos fechados.",
     autor: "Mariana S.",
     iniciais: "MS"
-  }
+  },
+
 ];
 
 // ─────────────────────────────────────────────
@@ -164,7 +165,7 @@ function Header() {
         : "bg-transparent"
         }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-48 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto  px-6 h-48 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#hero"
@@ -255,7 +256,7 @@ function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#FAFAFA] pt-48"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#FAFAFA] pt-32 md:pt-48"
       aria-label="Seção principal"
     >
       {/* Background blobs */}
