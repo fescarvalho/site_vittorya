@@ -131,17 +131,16 @@ const DEPOIMENTOS: Depoimento[] = [
   },
   {
     id: 2,
-    texto: "Vittorya me acolheu em um momento de extrema necessidade, com muito respeito e dedicação. Me fez conhecer coisas em mim que em toda minha vida nunca tinha sequer pensado. Estar em tratamento com ela, é saber que serei ouvida e aconselhada, que teremos risos e choros, comemoração e acolhimento. Hoje vejo o quão importante e esclarecedor foi começar esse tratamento com ela. Vittorya é uma profissional e uma pessoa maravilhosa, humana, carinhosa e extremamente dedicada ao seu paciente. Você é muito especial para mim.",
+    texto: "Vittorya me acolheu em um momento de extrema necessidade, com muito respeito e dedicação. Me fez conhecer coisas em mim que em toda minha vida nunca tinha sequer pensado. Estar em tratamento com ela, é saber que serei ouvida e aconselhada, que teremos risos e choros, comemoração e acolhimento. Hoje vejo o quão importante e esclarecedor foi começar esse tratamento com ela. Vittorya é uma profissional e uma pessoa maravilhosa, humana, carinhosa e extremamente dedicada ao seu paciente. Você é muito especial para mim",
     autor: "Paciente Anônima",
     iniciais: "PA"
   },
   {
     id: 3,
-    texto: "Profissional maravilhosa! Muito humana, sabe exatamente as perguntas certas a fazer para ajudar no autoconhecimento. Recomendo de olhos fechados.",
-    autor: "Mariana S.",
-    iniciais: "MS"
+    texto: "Essa é a primeira vez que faço terapia, e tem sido uma experiência muito significativa para mim. No início eu não sabia exatamente como seria o processo, mas ao longo das sessões fui me sentindo cada vez mais acolhida e segura para falar sobre meus sentimentos e refletir sobre diferentes aspectos da minha vida. Aos poucos fui aprendendo a me compreender melhor, olhar para mim com mais cuidado e lidar de forma mais consciente com algumas situações.\n\nA Vittórya tem um trabalho muito sensível e transformador. Sou muito grata por todo o cuidado, escuta e profissionalismo durante esse processo, que tem feito diferença na minha vida.",
+    autor: "Paciente Anônima",
+    iniciais: "PA"
   },
-
 ];
 
 // ─────────────────────────────────────────────
@@ -661,7 +660,7 @@ function DepoimentosSection() {
                   <Star fill="currentColor" size={18} />
                   <Star fill="currentColor" size={18} />
                 </div>
-                <p className="font-sans text-gray-600 text-base leading-relaxed mb-8 italic relative z-10">
+                <p className="font-sans text-gray-600 text-base leading-relaxed mb-8 italic relative z-10 whitespace-pre-wrap">
                   "{dep.texto}"
                 </p>
               </div>
